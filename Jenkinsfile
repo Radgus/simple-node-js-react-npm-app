@@ -1,10 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-buster-slim' 
-            args '-p 3000:3000' 
-        }
+    agent any
+    tools {
+        nodejs 'node-11.1.0'
     }
+
+    options {
+        timeout(time: 5, unit: 'MINUTES')
+    }
+    
     stages {
         stage('Install dependencies') { 
             steps {
